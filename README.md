@@ -1,14 +1,14 @@
-# Discord Linux Go-Live Audio Workaround Bot
+# Discord Linux Go-Live Audio Workaround Bot (redundant)
 
 This is a Discord bot that will allow you to stream application audio through it 
 to a voice channel the exact same way those music bots do, and in Stereo.
 
-For the longest time (5+ years) Discord didn't bother to capture Go-Live audio from Linux, during which I made this project. 
-Now it does though, but unfortunately, it is mono, and it seems like it is downmixing it server side. 
-Good news is, bots don't suffer from this issue, so this project is sticking around for probably 5 more years. 😞
+For the longest time (7+ years) Discord didn't bother to capture Go-Live audio from Linux, during which I made this project. 
+Now it does though, and as of June 2026, it's in stereo too!  
+Thus, today, this project is redundant, but I'll still maintain it for now, just in case they break it.
 
 The advantages of using this rather than routing through microphone input of Discord are that:
-1. Discord mic input is encoded in mono, while bots can stream stereo audio. 
+1. Discord microphone input is encoded in mono, while bots can stream stereo audio. 
    Mono audio sounds terrible in almost every situation you would be using Go-Live.
 2. You will need to give up noise suppression, etc. when doing it through the mic input.
 3. Allow the end user audio level adjustment of the stream audio and your voice individually.
@@ -49,5 +49,4 @@ will hear the audio in mono. Mobile users too (not personally verified). Nothing
 
 ---
 
-~~Its absolutely insane that the discord engineers who are paid $150k-$250k/yr+ cba to spend few hours to fix up the linux client.~~
-Nevermind, [apparently this is gonna change now](https://www.youtube.com/watch?v=BwNfmazmU4o)
+It took them forever, but I am happy that Discord is now finally commiting to [the year of the Linux desktop](https://www.youtube.com/watch?v=BwNfmazmU4o)
