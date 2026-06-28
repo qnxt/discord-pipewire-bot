@@ -1,4 +1,4 @@
-# Discord Linux Go-Live Audio Workaround Bot (redundant)
+# Discord PipeWire Bot (redundant)
 
 This is a Discord bot that will allow you to stream application audio through it 
 to a voice channel the exact same way those music bots do, and in Stereo.
