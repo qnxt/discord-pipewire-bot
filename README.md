@@ -1,4 +1,4 @@
-# Discord PipeWire Bot (redundant)
+# Discord PipeWire Bot
 
 This is a Discord bot that will allow you to stream application audio through it 
 to a voice channel the exact same way those music bots do, and in Stereo.
@@ -19,15 +19,15 @@ The advantages of using this rather than routing through microphone input of Dis
 ## Installation Instructions
 
 1. Pick a .py file from this repo. Include `pulseaudio_source.py` too in the same directory.
-    + `go-live-bot-classic.py` -- uses old style prefixed commands, scraping messages.
-    + `go-live-bot-slash.py` -- uses slash commands.
-    + `go-live-bot-pycord.py` -- uses slash commands but uses pycord library instead of discord.py.
-2. Make sure the file is executable (`chmod +x go-live-bot-classic.py`)
+    + `dc-pw-bot-classic.py` -- uses old style prefixed commands, scraping messages.
+    + `dc-pw-bot-slash.py` -- uses slash commands.
+    + `dc-pw-bot-pycord.py` -- uses slash commands but uses pycord library instead of discord.py.
+2. Make sure the file is executable (`chmod +x dc-pw-bot-classic.py`)
 3. Install discord.py 2.x with some dependencies: 
-   + Arch Linux users can do `paru -S python-discord python-pynacl python-davey`
+   + Arch Linux users can do `paru -S --needed python-discord python-pynacl python-davey`
    + if you want to create a virtual environment, inside you do `pip3 install discord.py[voice] PyNaCl davey`
 4. Make sure you have `ffmpeg` and `qpwgraph` installed as well.
-5. Set `GOLIVE_BOT_TOKEN` environment variable with the bot token or put it in `~/.local/share/go-live-bot/token.txt`
+5. Set `GOLIVE_BOT_TOKEN` environment variable with the bot token or put it in `~/.local/share/dc-pw-bot/token.txt`
 
 To get a bot token, register a new app [here](https://discord.com/developers/applications), 
 create a bot, and copy the token (not the client secret).  

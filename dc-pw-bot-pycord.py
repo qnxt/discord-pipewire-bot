@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 import discord
-from discord.ext import commands
 import sys
 import os
 
 from pulseaudio_source import PulseAudioSource
 
-config_dir_path = os.path.join(os.path.expanduser("~"), ".local", "share", "go-live-bot")
+config_dir_path = os.path.join(os.path.expanduser("~"), ".local", "share", "dc-pw-bot")
 token_file_path = os.path.join(config_dir_path, "token.txt")
 
 bot_token = None
@@ -21,16 +20,9 @@ if os.environ.get('GOLIVE_BOT_TOKEN'):
 if not bot_token:
     sys.exit("i need the bot token to work. either set GOLIVE_BOT_TOKEN env var or put it in: " + token_file_path)
 
-if os.environ.get('GOLIVE_BOT_PREFIX'):
-    command_prefix = os.environ.get('GOLIVE_BOT_PREFIX')
-else:
-    command_prefix = "gl."
-
 owner_list = []
 
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(intents=intents, command_prefix=command_prefix)
+bot = discord.Bot()
 
 
 @bot.event
@@ -50,29 +42,26 @@ async def on_ready():
         print(f"Added {app_info.owner.name} to the bot operator list")
 
     print("------")
-    print(f"Use this command prefix: {command_prefix}")
     print(f"Available commands:")
-    print(f"{command_prefix}join")
-    print(f"{command_prefix}leave")
+    print(f"/join")
+    print(f"/leave")
     print(f"------")
 
 
-@bot.command()
-@commands.guild_only()
-async def leave(ctx):
+@bot.slash_command()
+async def leave2(ctx):
     if not int(ctx.author.id) in owner_list:
         return
     ctx.voice_client.stop()
     await ctx.voice_client.disconnect()
     try:
-        await ctx.reply(":ok_hand:")
+        await ctx.respond(":ok_hand:")
     except discord.Forbidden:
         print("channel left")
 
 
-@bot.command()
-@commands.guild_only()
-async def join(ctx):
+@bot.slash_command()
+async def join2(ctx):
     if not int(ctx.author.id) in owner_list:
         return
 
@@ -81,7 +70,7 @@ async def join(ctx):
         await ctx.voice_client.disconnect()
 
     if type(ctx.channel) != discord.VoiceChannel:
-        await ctx.reply("type the command in a voice channel you wish me to join")
+        await ctx.respond("type the command in a voice channel you wish me to join")
         return
 
     target_channel = ctx.channel
@@ -93,11 +82,10 @@ async def join(ctx):
             audio_source = PulseAudioSource()
 
             voice_client.play(
-                audio_source,
-                application="lowdelay"
+                audio_source
             )
 
-            await ctx.reply(f"joined {target_channel.mention}")
+            await ctx.respond(f"joined {target_channel.mention}")
 
 
 bot.run(bot_token)
